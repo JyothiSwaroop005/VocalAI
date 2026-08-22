@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "VocalLabs Intelligence OS — Nova AI Browser Agent",
+  "short_name": "VocalLabs OS",
+  "version": "1.0.0",
+  "description": "Voice-first AI Operating System for the web. Hands-free Nova AI browser agent powered by Chrome Extension APIs.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "sidePanel",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Open VocalLabs Intelligence OS Side Panel"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/content-script.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
